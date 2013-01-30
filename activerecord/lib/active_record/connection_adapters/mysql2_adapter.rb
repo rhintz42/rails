@@ -53,6 +53,8 @@ module ActiveRecord
       end
 
       def new_column(field, default, type, null, collation) # :nodoc:
+        #require 'debugger'
+        #debugger
         Column.new(field, default, type, null, collation, strict_mode?)
       end
 

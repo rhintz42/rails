@@ -1,0 +1,2393 @@
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 21395) running in data directory "/usr/local/var/postgres"?
+LOG:  database system was shut down at 2013-01-14 17:01:21 PST
+LOG:  autovacuum launcher started
+LOG:  database system is ready to accept connections
+ERROR:  database "test" already exists
+STATEMENT:  CREATE DATABASE test;
+	
+FATAL:  role "_postgres" does not exist
+FATAL:  role "_postgres" does not exist
+FATAL:  role "_postgres" does not exist
+FATAL:  role "_postgres" does not exist
+ERROR:  database "activerecord_unittest" already exists
+STATEMENT:  CREATE DATABASE activerecord_unittest ENCODING 'UTF8' TEMPLATE template0;
+	
+ERROR:  database "activerecord_unittest2" already exists
+STATEMENT:  CREATE DATABASE activerecord_unittest2 ENCODING 'UTF8' TEMPLATE template0;
+	
+ERROR:  extension "hstore" already exists
+STATEMENT:  CREATE EXTENSION hstore;
+ERROR:  extension "hstore" already exists
+STATEMENT:  CREATE EXTENSION hstore;
+ERROR:  insert or update on table "fk_test_has_fk" violates foreign key constraint "fk_name"
+DETAIL:  Key (fk_id)=(0) is not present in table "fk_test_has_pk".
+STATEMENT:  INSERT INTO fk_test_has_fk (fk_id) VALUES (0)
+ERROR:  duplicate key value violates unique constraint "index_subscribers_on_nick"
+DETAIL:  Key (nick)=(me) already exists.
+STATEMENT:  INSERT INTO subscribers(nick) VALUES('me')
+ERROR:  relation "zomg" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('zomg', 'id')
+	
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:              SELECT pg_get_serial_sequence('zomg', 'id')
+	
+ERROR:  relation "unobtainium" does not exist at character 571
+STATEMENT:              SELECT attr.attname, seq.relname
+	            FROM pg_class      seq,
+	                 pg_attribute  attr,
+	                 pg_depend     dep,
+	                 pg_constraint cons
+	            WHERE seq.oid           = dep.objid
+	              AND seq.relkind       = 'S'
+	              AND attr.attrelid     = dep.refobjid
+	              AND attr.attnum       = dep.refobjsubid
+	              AND attr.attrelid     = cons.conrelid
+	              AND attr.attnum       = cons.conkey[1]
+	              AND cons.contype      = 'p'
+	              AND dep.refobjid      = '"unobtainium"'::regclass
+	
+ERROR:  relation "unobtainium" does not exist at character 247
+STATEMENT:              SELECT attr.attname
+	            FROM pg_attribute attr
+	            INNER JOIN pg_constraint cons ON attr.attrelid = cons.conrelid AND attr.attnum = cons.conkey[1]
+	            WHERE cons.contype = 'p'
+	              AND cons.conrelid = '"unobtainium"'::regclass
+	
+ERROR:  relation "zomg" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('zomg', 'id')
+	
+ERROR:  null value in column "bar" violates not-null constraint
+DETAIL:  Failing row contains (2, hello, null).
+STATEMENT:  insert into testings ("id", "foo", "bar") values (2, 'hello', NULL)
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  DROP TABLE "testings"
+ERROR:  null value in column "bar" violates not-null constraint
+DETAIL:  Failing row contains (1, hello, null).
+STATEMENT:  insert into testings (foo, bar) values ('hello', NULL)
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  DROP TABLE "testings"
+ERROR:  table "testings" does not exist
+STATEMENT:  DROP TABLE "testings"
+ERROR:  table "testings" does not exist
+STATEMENT:  DROP TABLE "testings"
+ERROR:  null value in column "foo" violates not-null constraint
+DETAIL:  Failing row contains (1, null).
+STATEMENT:  insert into testings (foo) values (NULL)
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  DROP TABLE "testings"
+ERROR:  column "nonexistent" does not exist
+STATEMENT:  ALTER TABLE "test_models" RENAME COLUMN "nonexistent" TO "should_fail"
+LOG:  plan:
+DETAIL:     {PLANNEDSTMT 
+	   :commandType 1 
+	   :queryId 0 
+	   :hasReturning false 
+	   :hasModifyingCTE false 
+	   :canSetTag true 
+	   :transientPlan false 
+	   :planTree 
+	      {SEQSCAN 
+	      :startup_cost 0.00 
+	      :total_cost 29.97 
+	      :plan_rows 897 
+	      :plan_width 77 
+	      :targetlist (
+	         {TARGETENTRY 
+	         :expr 
+	            {VAR 
+	            :varno 1 
+	            :varattno -2 
+	            :vartype 26 
+	            :vartypmod -1 
+	            :varcollid 0 
+	            :varlevelsup 0 
+	            :varnoold 1 
+	            :varoattno -2 
+	            :location 7
+	            }
+	         :resno 1 
+	         :resname oid 
+	         :ressortgroupref 0 
+	         :resorigtbl 1247 
+	         :resorigcol -2 
+	         :resjunk false
+	         }
+	         {TARGETENTRY 
+	         :expr 
+	            {VAR 
+	            :varno 1 
+	            :varattno 1 
+	            :vartype 19 
+	            :vartypmod -1 
+	            :varcollid 0 
+	            :varlevelsup 0 
+	            :varnoold 1 
+	            :varoattno 1 
+	            :location 12
+	            }
+	         :resno 2 
+	         :resname typname 
+	         :ressortgroupref 0 
+	         :resorigtbl 1247 
+	         :resorigcol 1 
+	         :resjunk false
+	         }
+	         {TARGETENTRY 
+	         :expr 
+	            {VAR 
+	            :varno 1 
+	            :varattno 12 
+	            :vartype 26 
+	            :vartypmod -1 
+	            :varcollid 0 
+	            :varlevelsup 0 
+	            :varnoold 1 
+	            :varoattno 12 
+	            :location 21
+	            }
+	         :resno 3 
+	         :resname typelem 
+	         :ressortgroupref 0 
+	         :resorigtbl 1247 
+	         :resorigcol 12 
+	         :resjunk false
+	         }
+	         {TARGETENTRY 
+	         :expr 
+	            {VAR 
+	            :varno 1 
+	            :varattno 10 
+	            :vartype 18 
+	            :vartypmod -1 
+	            :varcollid 0 
+	            :varlevelsup 0 
+	            :varnoold 1 
+	            :varoattno 10 
+	            :location 30
+	            }
+	         :resno 4 
+	         :resname typdelim 
+	         :ressortgroupref 0 
+	         :resorigtbl 1247 
+	         :resorigcol 10 
+	         :resjunk false
+	         }
+	         {TARGETENTRY 
+	         :expr 
+	            {VAR 
+	            :varno 1 
+	            :varattno 14 
+	            :vartype 24 
+	            :vartypmod -1 
+	            :varcollid 0 
+	            :varlevelsup 0 
+	            :varnoold 1 
+	            :varoattno 14 
+	            :location 40
+	            }
+	         :resno 5 
+	         :resname typinput 
+	         :ressortgroupref 0 
+	         :resorigtbl 1247 
+	         :resorigcol 14 
+	         :resjunk false
+	         }
+	      )
+	      :qual <> 
+	      :lefttree <> 
+	      :righttree <> 
+	      :initPlan <> 
+	      :extParam (b)
+	      :allParam (b)
+	      :scanrelid 1
+	      }
+	   :rtable (
+	      {RTE 
+	      :alias <> 
+	      :eref 
+	         {ALIAS 
+	         :aliasname pg_type 
+	         :colnames ("typname" "typnamespace" "typowner" "typlen" "typbyval" "t
+	         yptype" "typcategory" "typispreferred" "typisdefined" "typdelim" "typ
+	         relid" "typelem" "typarray" "typinput" "typoutput" "typreceive" "typs
+	         end" "typmodin" "typmodout" "typanalyze" "typalign" "typstorage" "typ
+	         notnull" "typbasetype" "typtypmod" "typndims" "typcollation" "typdefa
+	         ultbin" "typdefault" "typacl")
+	         }
+	      :rtekind 0 
+	      :relid 1247 
+	      :relkind r 
+	      :inh false 
+	      :inFromCl true 
+	      :requiredPerms 2 
+	      :checkAsUser 0 
+	      :selectedCols (b 6 9 18 20 22)
+	      :modifiedCols (b)
+	      }
+	   )
+	   :resultRelations <> 
+	   :utilityStmt <> 
+	   :subplans <> 
+	   :rewindPlanIDs (b)
+	   :rowMarks <> 
+	   :relationOids (o 1247)
+	   :invalItems <> 
+	   :nParamExec 0
+	   }
+	
+STATEMENT:  SELECT oid, typname, typelem, typdelim, typinput FROM pg_type
+LOG:  plan:
+DETAIL:     {PLANNEDSTMT 
+	   :commandType 1 
+	   :queryId 0 
+	   :hasReturning false 
+	   :hasModifyingCTE false 
+	   :canSetTag true 
+	   :transientPlan false 
+	   :planTree 
+	      {RESULT 
+	      :startup_cost 0.00 
+	      :total_cost 0.01 
+	      :plan_rows 1 
+	      :plan_width 0 
+	      :targetlist (
+	         {TARGETENTRY 
+	         :expr 
+	            {CONST 
+	            :consttype 23 
+	            :consttypmod -1 
+	            :constcollid 0 
+	            :constlen 4 
+	            :constbyval true 
+	            :constisnull false 
+	            :location 7 
+	            :constvalue 4 [ 1 0 0 0 0 0 0 0 ]
+	            }
+	         :resno 1 
+	         :resname ?column? 
+	         :ressortgroupref 0 
+	         :resorigtbl 0 
+	         :resorigcol 0 
+	         :resjunk false
+	         }
+	      )
+	      :qual <> 
+	      :lefttree <> 
+	      :righttree <> 
+	      :initPlan <> 
+	      :extParam (b)
+	      :allParam (b)
+	      :resconstantqual <>
+	      }
+	   :rtable <> 
+	   :resultRelations <> 
+	   :utilityStmt <> 
+	   :subplans <> 
+	   :rewindPlanIDs (b)
+	   :rowMarks <> 
+	   :relationOids <> 
+	   :invalItems <> 
+	   :nParamExec 0
+	   }
+	
+STATEMENT:  SELECT 1
+ERROR:  missing FROM-clause entry for table "id" at character 39
+STATEMENT:  SELECT  "posts".* FROM "posts"  WHERE "id"."posts.author_id" = 10  ORDER BY "posts"."id" ASC LIMIT 1
+ERROR:  table "fruits" does not exist
+STATEMENT:  DROP TABLE "fruits"
+ERROR:  relation "courses" does not exist at character 571
+STATEMENT:              SELECT attr.attname, seq.relname
+	            FROM pg_class      seq,
+	                 pg_attribute  attr,
+	                 pg_depend     dep,
+	                 pg_constraint cons
+	            WHERE seq.oid           = dep.objid
+	              AND seq.relkind       = 'S'
+	              AND attr.attrelid     = dep.refobjid
+	              AND attr.attnum       = dep.refobjsubid
+	              AND attr.attrelid     = cons.conrelid
+	              AND attr.attnum       = cons.conkey[1]
+	              AND cons.contype      = 'p'
+	              AND dep.refobjid      = '"courses"'::regclass
+	
+ERROR:  relation "courses" does not exist at character 571
+STATEMENT:              SELECT attr.attname, seq.relname
+	            FROM pg_class      seq,
+	                 pg_attribute  attr,
+	                 pg_depend     dep,
+	                 pg_constraint cons
+	            WHERE seq.oid           = dep.objid
+	              AND seq.relkind       = 'S'
+	              AND attr.attrelid     = dep.refobjid
+	              AND attr.attnum       = dep.refobjsubid
+	              AND attr.attrelid     = cons.conrelid
+	              AND attr.attnum       = cons.conkey[1]
+	              AND cons.contype      = 'p'
+	              AND dep.refobjid      = '"courses"'::regclass
+	
+ERROR:  relation "courses" does not exist at character 571
+STATEMENT:              SELECT attr.attname, seq.relname
+	            FROM pg_class      seq,
+	                 pg_attribute  attr,
+	                 pg_depend     dep,
+	                 pg_constraint cons
+	            WHERE seq.oid           = dep.objid
+	              AND seq.relkind       = 'S'
+	              AND attr.attrelid     = dep.refobjid
+	              AND attr.attnum       = dep.refobjsubid
+	              AND attr.attrelid     = cons.conrelid
+	              AND attr.attnum       = cons.conkey[1]
+	              AND cons.contype      = 'p'
+	              AND dep.refobjid      = '"courses"'::regclass
+	
+ERROR:  missing FROM-clause entry for table "id" at character 39
+STATEMENT:  SELECT  "posts".* FROM "posts"  WHERE "id"."limit" = 1 LIMIT 1
+ERROR:  missing FROM-clause entry for table "id" at character 67
+STATEMENT:  SELECT  "posts".* FROM "posts"  WHERE "posts"."title" = 'foo' AND "id"."limit" = 1 LIMIT 1
+ERROR:  relation "badtable" does not exist at character 15
+STATEMENT:  select 1 from badtable
+ERROR:  column companies.dhh does not exist at character 72
+STATEMENT:  SELECT  "companies".* FROM "companies"  WHERE "companies"."id" = 2 AND "companies"."dhh" = 't'  ORDER BY "companies"."id" ASC LIMIT 1
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  relation "prefix_reminders_suffix" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('prefix_reminders_suffix', 'id')
+	
+ERROR:  relation "prefix_reminders_suffix" does not exist at character 42
+STATEMENT:  SELECT  "prefix_reminders_suffix".* FROM "prefix_reminders_suffix"   ORDER BY "prefix_reminders_suffix"."id" ASC LIMIT 1
+ERROR:  relation "reminders" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('reminders', 'id')
+	
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "big_numbers" does not exist
+STATEMENT:  DROP TABLE "big_numbers"
+ERROR:  relation "big_numbers" does not exist at character 30
+STATEMENT:  SELECT  "big_numbers".* FROM "big_numbers"   ORDER BY "big_numbers"."id" ASC LIMIT 1
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "binary_testings" does not exist
+STATEMENT:  DROP TABLE "binary_testings"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  relation "reminders" does not exist at character 28
+STATEMENT:  SELECT  "reminders".* FROM "reminders"   ORDER BY "reminders"."id" ASC LIMIT 1
+ERROR:  relation "reminders" does not exist at character 28
+STATEMENT:  SELECT  "reminders".* FROM "reminders"   ORDER BY "reminders"."id" ASC LIMIT 1
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "test_limits" does not exist
+STATEMENT:  DROP TABLE "test_limits"
+ERROR:  table "test_limits" does not exist
+STATEMENT:  DROP TABLE "test_limits"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  relation "p_things_s" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('p_things_s', 'id')
+	
+ERROR:  relation "things" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('things', 'id')
+	
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  duplicate key value violates unique constraint "authors_pkey"
+DETAIL:  Key (id)=(2) already exists.
+STATEMENT:  UPDATE "authors" SET id = id + 1 WHERE "authors"."id" IN (SELECT "authors"."id" FROM "authors"   ORDER BY id DESC)
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  UPDATE "authors" SET id = id + 1 WHERE "authors"."id" IN (SELECT "authors"."id" FROM "authors"   ORDER BY id DESC)
+ERROR:  malformed range literal: "empty1"
+DETAIL:  Junk after "empty" keyword.
+STATEMENT:  INSERT INTO "intrange_data_type" ("int_range") VALUES ($1) RETURNING "id"
+ERROR:  type "ltree" does not exist at character 56
+STATEMENT:  CREATE TABLE "ltrees" ("id" serial primary key, "path" ltree) 
+ERROR:  type "ltree" does not exist at character 56
+STATEMENT:  CREATE TABLE "ltrees" ("id" serial primary key, "path" ltree) 
+ERROR:  type "ltree" does not exist at character 56
+STATEMENT:  CREATE TABLE "ltrees" ("id" serial primary key, "path" ltree) 
+ERROR:  relation "schema_things" does not exist at character 15
+STATEMENT:  SELECT * FROM schema_things
+ERROR:  relation "schema_things" does not exist at character 15
+STATEMENT:  SELECT * FROM schema_things
+ERROR:  relation "table_with_pk" does not exist at character 247
+STATEMENT:              SELECT attr.attname
+	            FROM pg_attribute attr
+	            INNER JOIN pg_constraint cons ON attr.attrelid = cons.conrelid AND attr.attnum = cons.conkey[1]
+	            WHERE cons.contype = 'p'
+	              AND cons.conrelid = '"table_with_pk"'::regclass
+	
+ERROR:  schema "test_schema3" already exists
+STATEMENT:  CREATE SCHEMA test_schema3
+ERROR:  schema "test_schema3" does not exist
+STATEMENT:  DROP SCHEMA test_schema3 CASCADE
+ERROR:  syntax error at or near "$" at character 20
+STATEMENT:  SET search_path TO $user,public
+ERROR:  cached plan must not change result type
+STATEMENT:  select * from developers where id = $1
+ERROR:  relation "things" does not exist at character 323
+STATEMENT:                SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+	                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod
+	                FROM pg_attribute a LEFT JOIN pg_attrdef d
+	                  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+	               WHERE a.attrelid = '"things"'::regclass
+	                 AND a.attnum > 0 AND NOT a.attisdropped
+	               ORDER BY a.attnum
+	
+ERROR:  relation "courses" does not exist at character 571
+STATEMENT:              SELECT attr.attname, seq.relname
+	            FROM pg_class      seq,
+	                 pg_attribute  attr,
+	                 pg_depend     dep,
+	                 pg_constraint cons
+	            WHERE seq.oid           = dep.objid
+	              AND seq.relkind       = 'S'
+	              AND attr.attrelid     = dep.refobjid
+	              AND attr.attnum       = dep.refobjsubid
+	              AND attr.attrelid     = cons.conrelid
+	              AND attr.attnum       = cons.conkey[1]
+	              AND cons.contype      = 'p'
+	              AND dep.refobjid      = '"courses"'::regclass
+	
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down
+LOG:  database system was shut down at 2013-01-14 23:34:21 PST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  insert or update on table "fk_test_has_fk" violates foreign key constraint "fk_name"
+DETAIL:  Key (fk_id)=(0) is not present in table "fk_test_has_pk".
+STATEMENT:  INSERT INTO fk_test_has_fk (fk_id) VALUES (0)
+ERROR:  duplicate key value violates unique constraint "index_subscribers_on_nick"
+DETAIL:  Key (nick)=(me) already exists.
+STATEMENT:  INSERT INTO subscribers(nick) VALUES('me')
+ERROR:  relation "zomg" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('zomg', 'id')
+	
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:              SELECT pg_get_serial_sequence('zomg', 'id')
+	
+ERROR:  relation "unobtainium" does not exist at character 571
+STATEMENT:              SELECT attr.attname, seq.relname
+	            FROM pg_class      seq,
+	                 pg_attribute  attr,
+	                 pg_depend     dep,
+	                 pg_constraint cons
+	            WHERE seq.oid           = dep.objid
+	              AND seq.relkind       = 'S'
+	              AND attr.attrelid     = dep.refobjid
+	              AND attr.attnum       = dep.refobjsubid
+	              AND attr.attrelid     = cons.conrelid
+	              AND attr.attnum       = cons.conkey[1]
+	              AND cons.contype      = 'p'
+	              AND dep.refobjid      = '"unobtainium"'::regclass
+	
+ERROR:  relation "unobtainium" does not exist at character 247
+STATEMENT:              SELECT attr.attname
+	            FROM pg_attribute attr
+	            INNER JOIN pg_constraint cons ON attr.attrelid = cons.conrelid AND attr.attnum = cons.conkey[1]
+	            WHERE cons.contype = 'p'
+	              AND cons.conrelid = '"unobtainium"'::regclass
+	
+ERROR:  relation "zomg" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('zomg', 'id')
+	
+ERROR:  null value in column "bar" violates not-null constraint
+DETAIL:  Failing row contains (2, hello, null).
+STATEMENT:  insert into testings ("id", "foo", "bar") values (2, 'hello', NULL)
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  DROP TABLE "testings"
+ERROR:  null value in column "bar" violates not-null constraint
+DETAIL:  Failing row contains (1, hello, null).
+STATEMENT:  insert into testings (foo, bar) values ('hello', NULL)
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  DROP TABLE "testings"
+ERROR:  table "testings" does not exist
+STATEMENT:  DROP TABLE "testings"
+ERROR:  table "testings" does not exist
+STATEMENT:  DROP TABLE "testings"
+ERROR:  null value in column "foo" violates not-null constraint
+DETAIL:  Failing row contains (1, null).
+STATEMENT:  insert into testings (foo) values (NULL)
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  DROP TABLE "testings"
+ERROR:  column "nonexistent" does not exist
+STATEMENT:  ALTER TABLE "test_models" RENAME COLUMN "nonexistent" TO "should_fail"
+LOG:  plan:
+DETAIL:     {PLANNEDSTMT 
+	   :commandType 1 
+	   :queryId 0 
+	   :hasReturning false 
+	   :hasModifyingCTE false 
+	   :canSetTag true 
+	   :transientPlan false 
+	   :planTree 
+	      {SEQSCAN 
+	      :startup_cost 0.00 
+	      :total_cost 45.78 
+	      :plan_rows 1278 
+	      :plan_width 77 
+	      :targetlist (
+	         {TARGETENTRY 
+	         :expr 
+	            {VAR 
+	            :varno 1 
+	            :varattno -2 
+	            :vartype 26 
+	            :vartypmod -1 
+	            :varcollid 0 
+	            :varlevelsup 0 
+	            :varnoold 1 
+	            :varoattno -2 
+	            :location 7
+	            }
+	         :resno 1 
+	         :resname oid 
+	         :ressortgroupref 0 
+	         :resorigtbl 1247 
+	         :resorigcol -2 
+	         :resjunk false
+	         }
+	         {TARGETENTRY 
+	         :expr 
+	            {VAR 
+	            :varno 1 
+	            :varattno 1 
+	            :vartype 19 
+	            :vartypmod -1 
+	            :varcollid 0 
+	            :varlevelsup 0 
+	            :varnoold 1 
+	            :varoattno 1 
+	            :location 12
+	            }
+	         :resno 2 
+	         :resname typname 
+	         :ressortgroupref 0 
+	         :resorigtbl 1247 
+	         :resorigcol 1 
+	         :resjunk false
+	         }
+	         {TARGETENTRY 
+	         :expr 
+	            {VAR 
+	            :varno 1 
+	            :varattno 12 
+	            :vartype 26 
+	            :vartypmod -1 
+	            :varcollid 0 
+	            :varlevelsup 0 
+	            :varnoold 1 
+	            :varoattno 12 
+	            :location 21
+	            }
+	         :resno 3 
+	         :resname typelem 
+	         :ressortgroupref 0 
+	         :resorigtbl 1247 
+	         :resorigcol 12 
+	         :resjunk false
+	         }
+	         {TARGETENTRY 
+	         :expr 
+	            {VAR 
+	            :varno 1 
+	            :varattno 10 
+	            :vartype 18 
+	            :vartypmod -1 
+	            :varcollid 0 
+	            :varlevelsup 0 
+	            :varnoold 1 
+	            :varoattno 10 
+	            :location 30
+	            }
+	         :resno 4 
+	         :resname typdelim 
+	         :ressortgroupref 0 
+	         :resorigtbl 1247 
+	         :resorigcol 10 
+	         :resjunk false
+	         }
+	         {TARGETENTRY 
+	         :expr 
+	            {VAR 
+	            :varno 1 
+	            :varattno 14 
+	            :vartype 24 
+	            :vartypmod -1 
+	            :varcollid 0 
+	            :varlevelsup 0 
+	            :varnoold 1 
+	            :varoattno 14 
+	            :location 40
+	            }
+	         :resno 5 
+	         :resname typinput 
+	         :ressortgroupref 0 
+	         :resorigtbl 1247 
+	         :resorigcol 14 
+	         :resjunk false
+	         }
+	      )
+	      :qual <> 
+	      :lefttree <> 
+	      :righttree <> 
+	      :initPlan <> 
+	      :extParam (b)
+	      :allParam (b)
+	      :scanrelid 1
+	      }
+	   :rtable (
+	      {RTE 
+	      :alias <> 
+	      :eref 
+	         {ALIAS 
+	         :aliasname pg_type 
+	         :colnames ("typname" "typnamespace" "typowner" "typlen" "typbyval" "t
+	         yptype" "typcategory" "typispreferred" "typisdefined" "typdelim" "typ
+	         relid" "typelem" "typarray" "typinput" "typoutput" "typreceive" "typs
+	         end" "typmodin" "typmodout" "typanalyze" "typalign" "typstorage" "typ
+	         notnull" "typbasetype" "typtypmod" "typndims" "typcollation" "typdefa
+	         ultbin" "typdefault" "typacl")
+	         }
+	      :rtekind 0 
+	      :relid 1247 
+	      :relkind r 
+	      :inh false 
+	      :inFromCl true 
+	      :requiredPerms 2 
+	      :checkAsUser 0 
+	      :selectedCols (b 6 9 18 20 22)
+	      :modifiedCols (b)
+	      }
+	   )
+	   :resultRelations <> 
+	   :utilityStmt <> 
+	   :subplans <> 
+	   :rewindPlanIDs (b)
+	   :rowMarks <> 
+	   :relationOids (o 1247)
+	   :invalItems <> 
+	   :nParamExec 0
+	   }
+	
+STATEMENT:  SELECT oid, typname, typelem, typdelim, typinput FROM pg_type
+LOG:  plan:
+DETAIL:     {PLANNEDSTMT 
+	   :commandType 1 
+	   :queryId 0 
+	   :hasReturning false 
+	   :hasModifyingCTE false 
+	   :canSetTag true 
+	   :transientPlan false 
+	   :planTree 
+	      {RESULT 
+	      :startup_cost 0.00 
+	      :total_cost 0.01 
+	      :plan_rows 1 
+	      :plan_width 0 
+	      :targetlist (
+	         {TARGETENTRY 
+	         :expr 
+	            {CONST 
+	            :consttype 23 
+	            :consttypmod -1 
+	            :constcollid 0 
+	            :constlen 4 
+	            :constbyval true 
+	            :constisnull false 
+	            :location 7 
+	            :constvalue 4 [ 1 0 0 0 0 0 0 0 ]
+	            }
+	         :resno 1 
+	         :resname ?column? 
+	         :ressortgroupref 0 
+	         :resorigtbl 0 
+	         :resorigcol 0 
+	         :resjunk false
+	         }
+	      )
+	      :qual <> 
+	      :lefttree <> 
+	      :righttree <> 
+	      :initPlan <> 
+	      :extParam (b)
+	      :allParam (b)
+	      :resconstantqual <>
+	      }
+	   :rtable <> 
+	   :resultRelations <> 
+	   :utilityStmt <> 
+	   :subplans <> 
+	   :rewindPlanIDs (b)
+	   :rowMarks <> 
+	   :relationOids <> 
+	   :invalItems <> 
+	   :nParamExec 0
+	   }
+	
+STATEMENT:  SELECT 1
+ERROR:  missing FROM-clause entry for table "id" at character 39
+STATEMENT:  SELECT  "posts".* FROM "posts"  WHERE "id"."posts.author_id" = 10  ORDER BY "posts"."id" ASC LIMIT 1
+ERROR:  table "fruits" does not exist
+STATEMENT:  DROP TABLE "fruits"
+ERROR:  relation "courses" does not exist at character 571
+STATEMENT:              SELECT attr.attname, seq.relname
+	            FROM pg_class      seq,
+	                 pg_attribute  attr,
+	                 pg_depend     dep,
+	                 pg_constraint cons
+	            WHERE seq.oid           = dep.objid
+	              AND seq.relkind       = 'S'
+	              AND attr.attrelid     = dep.refobjid
+	              AND attr.attnum       = dep.refobjsubid
+	              AND attr.attrelid     = cons.conrelid
+	              AND attr.attnum       = cons.conkey[1]
+	              AND cons.contype      = 'p'
+	              AND dep.refobjid      = '"courses"'::regclass
+	
+ERROR:  relation "courses" does not exist at character 571
+STATEMENT:              SELECT attr.attname, seq.relname
+	            FROM pg_class      seq,
+	                 pg_attribute  attr,
+	                 pg_depend     dep,
+	                 pg_constraint cons
+	            WHERE seq.oid           = dep.objid
+	              AND seq.relkind       = 'S'
+	              AND attr.attrelid     = dep.refobjid
+	              AND attr.attnum       = dep.refobjsubid
+	              AND attr.attrelid     = cons.conrelid
+	              AND attr.attnum       = cons.conkey[1]
+	              AND cons.contype      = 'p'
+	              AND dep.refobjid      = '"courses"'::regclass
+	
+ERROR:  relation "courses" does not exist at character 571
+STATEMENT:              SELECT attr.attname, seq.relname
+	            FROM pg_class      seq,
+	                 pg_attribute  attr,
+	                 pg_depend     dep,
+	                 pg_constraint cons
+	            WHERE seq.oid           = dep.objid
+	              AND seq.relkind       = 'S'
+	              AND attr.attrelid     = dep.refobjid
+	              AND attr.attnum       = dep.refobjsubid
+	              AND attr.attrelid     = cons.conrelid
+	              AND attr.attnum       = cons.conkey[1]
+	              AND cons.contype      = 'p'
+	              AND dep.refobjid      = '"courses"'::regclass
+	
+ERROR:  missing FROM-clause entry for table "id" at character 39
+STATEMENT:  SELECT  "posts".* FROM "posts"  WHERE "id"."limit" = 1 LIMIT 1
+ERROR:  missing FROM-clause entry for table "id" at character 67
+STATEMENT:  SELECT  "posts".* FROM "posts"  WHERE "posts"."title" = 'foo' AND "id"."limit" = 1 LIMIT 1
+ERROR:  relation "badtable" does not exist at character 15
+STATEMENT:  select 1 from badtable
+ERROR:  column companies.dhh does not exist at character 72
+STATEMENT:  SELECT  "companies".* FROM "companies"  WHERE "companies"."id" = 2 AND "companies"."dhh" = 't'  ORDER BY "companies"."id" ASC LIMIT 1
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  relation "prefix_reminders_suffix" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('prefix_reminders_suffix', 'id')
+	
+ERROR:  relation "prefix_reminders_suffix" does not exist at character 42
+STATEMENT:  SELECT  "prefix_reminders_suffix".* FROM "prefix_reminders_suffix"   ORDER BY "prefix_reminders_suffix"."id" ASC LIMIT 1
+ERROR:  relation "reminders" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('reminders', 'id')
+	
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "big_numbers" does not exist
+STATEMENT:  DROP TABLE "big_numbers"
+ERROR:  relation "big_numbers" does not exist at character 30
+STATEMENT:  SELECT  "big_numbers".* FROM "big_numbers"   ORDER BY "big_numbers"."id" ASC LIMIT 1
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "binary_testings" does not exist
+STATEMENT:  DROP TABLE "binary_testings"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  relation "reminders" does not exist at character 28
+STATEMENT:  SELECT  "reminders".* FROM "reminders"   ORDER BY "reminders"."id" ASC LIMIT 1
+ERROR:  relation "reminders" does not exist at character 28
+STATEMENT:  SELECT  "reminders".* FROM "reminders"   ORDER BY "reminders"."id" ASC LIMIT 1
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "test_limits" does not exist
+STATEMENT:  DROP TABLE "test_limits"
+ERROR:  table "test_limits" does not exist
+STATEMENT:  DROP TABLE "test_limits"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  relation "p_things_s" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('p_things_s', 'id')
+	
+ERROR:  relation "things" does not exist
+STATEMENT:              SELECT pg_get_serial_sequence('things', 'id')
+	
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  table "p_things_s" does not exist
+STATEMENT:  DROP TABLE "p_things_s"
+ERROR:  table "things" does not exist
+STATEMENT:  DROP TABLE "things"
+ERROR:  table "awesome_things" does not exist
+STATEMENT:  DROP TABLE "awesome_things"
+ERROR:  table "prefix_things_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_things_suffix"
+ERROR:  table "p_awesome_things_s" does not exist
+STATEMENT:  DROP TABLE "p_awesome_things_s"
+ERROR:  table "reminders" does not exist
+STATEMENT:  DROP TABLE "reminders"
+ERROR:  table "people_reminders" does not exist
+STATEMENT:  DROP TABLE "people_reminders"
+ERROR:  table "prefix_reminders_suffix" does not exist
+STATEMENT:  DROP TABLE "prefix_reminders_suffix"
+ERROR:  column "last_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "last_name"
+ERROR:  column "key" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "key"
+ERROR:  column "bio" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "bio"
+ERROR:  column "age" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "age"
+ERROR:  column "height" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "height"
+ERROR:  column "wealth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "wealth"
+ERROR:  column "birthday" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "birthday"
+ERROR:  column "favorite_day" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "favorite_day"
+ERROR:  column "moment_of_truth" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "moment_of_truth"
+ERROR:  column "male" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "male"
+ERROR:  column "administrator" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "administrator"
+ERROR:  column "funny" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "funny"
+ERROR:  column "middle_name" of relation "people" does not exist
+STATEMENT:  ALTER TABLE "people" DROP "middle_name"
+ERROR:  duplicate key value violates unique constraint "authors_pkey"
+DETAIL:  Key (id)=(2) already exists.
+STATEMENT:  UPDATE "authors" SET id = id + 1 WHERE "authors"."id" IN (SELECT "authors"."id" FROM "authors"   ORDER BY id DESC)
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  UPDATE "authors" SET id = id + 1 WHERE "authors"."id" IN (SELECT "authors"."id" FROM "authors"   ORDER BY id DESC)
+ERROR:  malformed range literal: "empty1"
+DETAIL:  Junk after "empty" keyword.
+STATEMENT:  INSERT INTO "intrange_data_type" ("int_range") VALUES ($1) RETURNING "id"
+ERROR:  type "ltree" does not exist at character 56
+STATEMENT:  CREATE TABLE "ltrees" ("id" serial primary key, "path" ltree) 
+ERROR:  type "ltree" does not exist at character 56
+STATEMENT:  CREATE TABLE "ltrees" ("id" serial primary key, "path" ltree) 
+ERROR:  type "ltree" does not exist at character 56
+STATEMENT:  CREATE TABLE "ltrees" ("id" serial primary key, "path" ltree) 
+ERROR:  relation "schema_things" does not exist at character 15
+STATEMENT:  SELECT * FROM schema_things
+ERROR:  relation "schema_things" does not exist at character 15
+STATEMENT:  SELECT * FROM schema_things
+ERROR:  relation "table_with_pk" does not exist at character 247
+STATEMENT:              SELECT attr.attname
+	            FROM pg_attribute attr
+	            INNER JOIN pg_constraint cons ON attr.attrelid = cons.conrelid AND attr.attnum = cons.conkey[1]
+	            WHERE cons.contype = 'p'
+	              AND cons.conrelid = '"table_with_pk"'::regclass
+	
+ERROR:  schema "test_schema3" already exists
+STATEMENT:  CREATE SCHEMA test_schema3
+ERROR:  schema "test_schema3" does not exist
+STATEMENT:  DROP SCHEMA test_schema3 CASCADE
+ERROR:  syntax error at or near "$" at character 20
+STATEMENT:  SET search_path TO $user,public
+ERROR:  cached plan must not change result type
+STATEMENT:  select * from developers where id = $1
+ERROR:  relation "things" does not exist at character 323
+STATEMENT:                SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+	                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod
+	                FROM pg_attribute a LEFT JOIN pg_attrdef d
+	                  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+	               WHERE a.attrelid = '"things"'::regclass
+	                 AND a.attnum > 0 AND NOT a.attisdropped
+	               ORDER BY a.attnum
+	
+ERROR:  relation "courses" does not exist at character 571
+STATEMENT:              SELECT attr.attname, seq.relname
+	            FROM pg_class      seq,
+	                 pg_attribute  attr,
+	                 pg_depend     dep,
+	                 pg_constraint cons
+	            WHERE seq.oid           = dep.objid
+	              AND seq.relkind       = 'S'
+	              AND attr.attrelid     = dep.refobjid
+	              AND attr.attnum       = dep.refobjsubid
+	              AND attr.attrelid     = cons.conrelid
+	              AND attr.attnum       = cons.conkey[1]
+	              AND cons.contype      = 'p'
+	              AND dep.refobjid      = '"courses"'::regclass
+	
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down

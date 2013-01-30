@@ -27,6 +27,11 @@ module ActiveRecord
       # It will be mapped to one of the standard Rails SQL types in the <tt>type</tt> attribute.
       # +null+ determines if this column allows +NULL+ values.
       def initialize(name, default, sql_type = nil, null = true)
+        #require 'debugger'
+        #debugger
+        #puts name
+        #puts default||"NONE"
+
         @name      = name
         @sql_type  = sql_type
         @null      = null
@@ -72,6 +77,7 @@ module ActiveRecord
 
       # Casts a Ruby value to something appropriate for writing to the database.
       def type_cast_for_write(value)
+        puts value
         return value unless number?
 
         if value == false

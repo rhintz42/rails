@@ -440,6 +440,8 @@ module ActiveRecord
         sql = "SHOW FULL FIELDS FROM #{quote_table_name(table_name)}"
         execute_and_free(sql, 'SCHEMA') do |result|
           each_hash(result).map do |field|
+            #require 'debugger'
+            #debugger
             new_column(field[:Field], field[:Default], field[:Type], field[:Null] == "YES", field[:Collation])
           end
         end
